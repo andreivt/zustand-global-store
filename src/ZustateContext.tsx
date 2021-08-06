@@ -1,18 +1,18 @@
 import { createContext, FunctionComponent } from "react";
 import { IGlobalStore } from ".";
 
-export const ZuStateContext = createContext<IGlobalStore>({
+export const GlobalStateContext = createContext<IGlobalStore>({
   getStore: () => undefined,
   serialize: () => undefined,
 });
 
-interface IZuStateContextProviderProps {
-  globalStore: IGlobalStore;
+interface IGlobalStateContextProviderProps {
+  store: IGlobalStore;
 }
 
-export const ZuStateContextProvider: FunctionComponent<IZuStateContextProviderProps> =
-  ({ globalStore, children }) => (
-    <ZuStateContext.Provider value={globalStore}>
+export const GlobalStateContextProvider: FunctionComponent<IGlobalStateContextProviderProps> =
+  ({ store, children }) => (
+    <GlobalStateContext.Provider value={store}>
       {children}
-    </ZuStateContext.Provider>
+    </GlobalStateContext.Provider>
   );

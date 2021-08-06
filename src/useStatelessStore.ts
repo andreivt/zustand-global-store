@@ -1,11 +1,8 @@
 import { useContext } from "react";
-import { ZuStateContext } from ".";
+import { BaseStoreConstructorType, GlobalStateContext } from ".";
 
-export type StoreConstructorType<T> = (new (
-  initialState: any,
-  _services: any
-) => T) & { storeName: string };
-
-export function useStatelessStore<T>(store: StoreConstructorType<T>): T {
-  return useContext(ZuStateContext).getStore(store);
+export function useStatelessStore<S, T>(
+  store: BaseStoreConstructorType<S, T>
+): T {
+  return useContext(GlobalStateContext).getStore(store);
 }

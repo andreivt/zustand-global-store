@@ -2,6 +2,13 @@ import { merge as _merge } from "lodash";
 import { SetState, State, StoreApi, Subscribe } from "zustand";
 import create from "zustand/vanilla";
 
+export type BaseStoreConstructorType<S, T> = (new (
+  initialState: S | undefined,
+  _services: any
+) => T) & {
+  storeName: string;
+};
+
 export abstract class BaseStore<S extends State> {
   protected _store: StoreApi<S>;
 
@@ -15,9 +22,7 @@ export abstract class BaseStore<S extends State> {
     this.subscribe = this._store.subscribe;
   }
 
-  createdStore = () => {
-    return this._store;
-  };
+  createdStore = () => this._store;
 
   get storeState() {
     return this._store.getState();

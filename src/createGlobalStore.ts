@@ -1,14 +1,13 @@
-import { hashCode, StoreConstructorType } from ".";
+import hash from "object-hash";
+import {} from ".";
+import { BaseStoreConstructorType } from "./BaseStore";
 
 export interface IGlobalStore {
-  getStore: <T>(store: StoreConstructorType<T>) => T;
+  getStore: <S, T>(store: BaseStoreConstructorType<S, T>) => T;
   serialize: () => Record<string, object>;
 }
 
-type CreateGlobalStoreArgs<Data, Services> = {
-  data: Data;
-  services: Services;
-};
+type CreateGlobalStoreArgs<D, S> = { data: D; services: S };
 
 export function createGlobalStore<D, S>({
   data,
@@ -16,15 +15,15 @@ export function createGlobalStore<D, S>({
 }: CreateGlobalStoreArgs<D, S>): IGlobalStore {
   const stores: Record<string, any> = {};
 
-  const initStore = <T>(newStore: StoreConstructorType<T>) => {
-    const hashedName = hashCode(newStore.storeName);
+  const initStore = <S, T>(newStore: BaseStoreConstructorType<S, T>) => {
+    const hashedName = hash(newStore.storeName);
 
     return (stores[hashedName] = new newStore(data[hashedName], services));
   };
 
   return {
-    getStore: <T>(store: StoreConstructorType<T>) =>
-      stores[hashCode(store.storeName)] || initStore(store),
+    getStore: <S, T>(store: BaseStoreConstructorType<S, T>) =>
+      stores[hash(store.storeName)] || initStore(store),
     serialize: () =>
       Object.keys(stores).reduce(
         (acc, storeName) => ({

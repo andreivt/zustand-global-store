@@ -1,14 +1,7 @@
 import { pick as _pick } from "lodash";
 import create, { State } from "zustand";
 import shallow from "zustand/shallow";
-import { BaseStore, useStatelessStore } from "./";
-
-type BaseStoreConstructorType<S, T> = (new (
-  initialState: S | undefined,
-  _services: any
-) => T) & {
-  storeName: string;
-};
+import { BaseStore, BaseStoreConstructorType, useStatelessStore } from "./";
 
 export function useStatefullStore<S extends State, T extends BaseStore<S>>(
   store: BaseStoreConstructorType<S, T>,
