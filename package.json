@@ -1,5 +1,6 @@
 {
-  "name": "zustate",
+  "name": "zustand-global-store",
+  "description": "global store creator over zustand and state(full|less) hooks. SSR ready.",
   "version": "1.0.0",
   "dependencies": {
     "lodash": "^4.17.21",

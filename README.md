@@ -1,1 +1,1 @@
-# zustate
+# zustand-global-store
