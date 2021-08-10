@@ -1,11 +1,5 @@
 import hash from "object-hash";
-import {} from ".";
-import { BaseStoreConstructorType } from "./BaseStore";
-
-export interface IGlobalStore {
-  getStore: <S, T>(store: BaseStoreConstructorType<S, T>) => T;
-  serialize: () => Record<string, object>;
-}
+import { BaseStoreConstructorType, IGlobalStore } from ".";
 
 type CreateGlobalStoreArgs<D, S> = { data: D; services: S };
 
