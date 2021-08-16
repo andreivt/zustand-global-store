@@ -44,4 +44,4 @@ const MyApp = () => {
 }
 ```
 
-Making use of `useStatelessStore` hook does not cause a rerender on each store state update and its purpose is to be used only when we need to access a store methods. On the other hand, `useStatefullStore` accepts as second argument an array of the store properties on which zustand will trigger a rerender. 
+Making use of `useStatelessStore` hook does not cause a rerender on each store state update and its purpose is to be used only when we need to access store methods. On the other hand, `useStatefullStore` accepts as second argument an array of the store properties on which zustand will trigger a rerender. 
