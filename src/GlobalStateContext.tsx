@@ -1,4 +1,4 @@
-import { createContext, FunctionComponent } from "react";
+import React, { createContext, FunctionComponent } from "react";
 import { IGlobalStore } from ".";
 
 export const GlobalStateContext = createContext<IGlobalStore>({
@@ -10,9 +10,10 @@ interface IGlobalStateContextProviderProps {
   store: IGlobalStore;
 }
 
-export const GlobalStateContextProvider: FunctionComponent<IGlobalStateContextProviderProps> =
-  ({ store, children }) => (
-    <GlobalStateContext.Provider value={store}>
-      {children}
-    </GlobalStateContext.Provider>
-  );
+export const GlobalStateContextProvider: FunctionComponent<
+  IGlobalStateContextProviderProps
+> = ({ store, children }) => (
+  <GlobalStateContext.Provider value={store}>
+    {children}
+  </GlobalStateContext.Provider>
+);
